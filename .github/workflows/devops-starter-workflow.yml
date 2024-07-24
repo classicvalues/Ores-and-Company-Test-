@@ -28,11 +28,11 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Azure authentication
-      uses: azure/login@v1
+      uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/arm-deploy@v1
+    - uses: azure/arm-deploy@v2
       id: createAcr
       with:
         subscriptionId: ${{ env.SUBSCRIPTIONID }}
@@ -49,7 +49,7 @@ jobs:
           echo "::add-mask::`az acr credential show -n ${{ env.REGISTRYNAME }} --query passwords[0].value`"
 
     - name: ACR authentication
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v2
       with:
         login-server: ${{ env.REGISTRYNAME }}.azurecr.io
         username: ${{ steps.acrCredentials.outputs.acr_username }}
@@ -69,11 +69,11 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Azure authentication
-      uses: azure/login@v1
+      uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/arm-deploy@v1
+    - uses: azure/arm-deploy@v2
       id: deploy
       with:
         subscriptionId: ${{ env.SUBSCRIPTIONID }}

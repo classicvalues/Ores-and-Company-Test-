@@ -27,16 +27,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Setup python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.8
 
       - name: Run mobsfscan
-        uses: MobSF/mobsfscan@1a796a0729f9d1a0e1fa4fe6b156fde47f4f3185
+        uses: MobSF/mobsfscan@25184ed98afa315d90f982d10a44e42c065dcebe
         with:
           args: . --sarif --output results.sarif || true
 
       - name: Upload mobsfscan report
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
