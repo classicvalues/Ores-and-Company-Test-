@@ -28,11 +28,11 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Azure authentication
-      uses: azure/login@v2
+      uses: azure/login@v2.3.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/arm-deploy@v2
+    - uses: azure/arm-deploy@v2.0.0
       id: createAcr
       with:
         subscriptionId: ${{ env.SUBSCRIPTIONID }}
@@ -69,11 +69,11 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Azure authentication
-      uses: azure/login@v2
+      uses: azure/login@v2.3.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/arm-deploy@v2
+    - uses: azure/arm-deploy@v2.0.0
       id: deploy
       with:
         subscriptionId: ${{ env.SUBSCRIPTIONID }}
@@ -89,7 +89,7 @@ jobs:
            echo "::add-mask::`az acr credential show -n ${{ env.REGISTRYNAME }} --query passwords[0].value | xargs`" 
 
     - name: 'Deploy to Azure Web App for Container'
-      uses: azure/webapps-deploy@v3
+      uses: azure/webapps-deploy@v3.0.8
       with: 
         app-name: ${{ env.APPNAME }} 
         images: ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
@@ -100,10 +100,10 @@ jobs:
     runs-on: windows-latest
     needs: Deploy
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.4.0
 
     - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v4.4.0
       with:
         node-version: ${{ env.NODE_VERSION }}
 
