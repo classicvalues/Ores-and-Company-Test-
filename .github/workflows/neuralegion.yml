@@ -162,7 +162,7 @@ jobs:
     runs-on: ubuntu-22.04
     name: A job to run a Nexploit scan
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.4.0
       - name: Start Nexploit Scan 🏁
         id: start
         uses: NeuraLegion/run-scan@5679a34436d5aec3650609493882fe01439872b4
